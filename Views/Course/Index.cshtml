@@ -1,0 +1,62 @@
+﻿@model List<CoursesMVC.Models.Course>
+
+@{
+    ViewData["Title"] = "All Courses";
+}
+
+<h1 class="text-center my-4 text-primary fw-bold">All Courses</h1>
+
+<div class="container">
+    <div class="row g-4">
+        @foreach (var Crs in Model)
+        {
+            <div class="col-md-4 col-sm-6">
+                <div class="card shadow-lg border-0 rounded-4 h-100 course-card" style="overflow:hidden;">
+                    <div class="card-header bg-primary text-white text-center fw-semibold fs-5">
+                        @Crs.Name
+                    </div>
+
+                    <div class="card-body text-center">
+                        <p class="text-secondary mb-2">
+                            <i class="bi bi-mortarboard-fill text-primary"></i>
+                            <strong>Department:</strong> @Crs.DepartmentId
+                        </p>
+
+                        <p class="fw-semibold text-success fs-6 mb-1">
+                            <i class="bi bi-star-fill text-warning"></i> Degree: @Crs.Degree
+                        </p>
+
+                        <p class="fw-semibold text-danger fs-6 mb-1">
+                            <i class="bi bi-graph-down-arrow"></i> Min Degree: @Crs.MinDegree
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-light text-center">
+                        <a asp-action="Details" asp-route-id="@Crs.Id" class="btn btn-outline-primary btn-sm rounded-pill px-4">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .course-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+    }
+</style>

@@ -1,0 +1,60 @@
+﻿@model Instructor;
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="row g-0">
+            <!-- صورة المدرس -->
+            <div class="col-md-4 bg-light d-flex align-items-center justify-content-center p-3">
+                <img src="~/images/@Model.Img" class="img-fluid rounded-4" alt="@Model.Name" style="max-height: 350px; object-fit: cover;">
+            </div>
+
+            <!-- معلومات المدرس -->
+            <div class="col-md-8">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-primary fw-bold">@Model.Name</h2>
+                    <hr />
+
+                    <p class="mb-2">
+                        <strong>📍 Address:</strong> <span class="text-muted">@Model.address</span>
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>💰 Salary:</strong> <span class="text-success fw-semibold">$@Model.Salary</span>
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>🏢 Department ID:</strong> <span class="badge bg-info text-dark">@Model.DepartmentID</span>
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>📚 Course ID:</strong> <span class="badge bg-secondary">@Model.CourseId</span>
+                    </p>
+
+                    <div class="mt-4">
+                        <a href="/Instructor/Edit/@Model.Id" class="btn btn-warning rounded-pill px-4 me-2">✏️ Edit</a>
+                        <a href="/Instructor/Delete/@Model.Id" class="btn btn-danger rounded-pill px-4 me-2">🗑 Delete</a>
+                        <a href="/Instructor/Index" class="btn btn-outline-primary rounded-pill px-4">← Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        transition: all 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+</style>

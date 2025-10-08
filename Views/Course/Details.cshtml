@@ -1,0 +1,57 @@
+﻿@model Course
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<h1 class="text-center text-primary my-4 fw-bold">Course Details</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center fs-5 fw-semibold">
+                    @Model.Name
+                </div>
+
+                <div class="card-body text-center">
+                    <p class="fs-6 mb-2">
+                        <strong class="text-secondary">Department:</strong>
+                        <span class="text-dark">@Model.m</span>
+                    </p>
+
+                    <p class="fs-6 mb-2">
+                        <strong class="text-secondary">Degree:</strong>
+                        <span class="text-success">@Model.Degree</span>
+                    </p>
+
+                    <p class="fs-6 mb-2">
+                        <strong class="text-secondary">Minimum Degree:</strong>
+                        <span class="text-danger">@Model.MinDegree</span>
+                    </p>
+                </div>
+
+                <div class="card-footer bg-light text-center">
+                    <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4">Back to List</a>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary rounded-pill px-4">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger rounded-pill px-4">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+</style>
