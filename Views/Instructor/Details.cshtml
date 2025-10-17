@@ -1,42 +1,37 @@
-﻿@model Instructor;
+﻿@model Instructor
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Instructor Details";
 }
 
 <div class="container my-5">
-    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
         <div class="row g-0">
-            <!-- صورة المدرس -->
-            <div class="col-md-4 bg-light d-flex align-items-center justify-content-center p-3">
-                <img src="~/images/@Model.Img" class="img-fluid rounded-4" alt="@Model.Name" style="max-height: 350px; object-fit: cover;">
+            <div class="col-md-5 bg-light d-flex align-items-center justify-content-center">
+                <img src="~/images/@Model.Img" alt="@Model.Name"
+                     class="img-fluid rounded-start-4" style="max-height: 400px; object-fit: cover;">
             </div>
 
-            <!-- معلومات المدرس -->
-            <div class="col-md-8">
-                <div class="card-body p-4">
-                    <h2 class="card-title text-primary fw-bold">@Model.Name</h2>
+            <div class="col-md-7">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold text-primary mb-3">@Model.Name</h2>
+                    <p class="text-muted mb-3 fs-5">Professional Instructor at Jo Courses</p>
                     <hr />
 
-                    <p class="mb-2">
-                        <strong>📍 Address:</strong> <span class="text-muted">@Model.address</span>
-                    </p>
+                    <p><strong>🏡 Address:</strong> <span class="text-dark">@Model.address</span></p>
+                    <p><strong>💰 Salary:</strong> <span class="text-success fw-semibold">$@Model.Salary</span></p>
+                    <p><strong>🏢 Department ID:</strong> <span class="badge bg-info text-dark">@Model.DepartmentID</span></p>
+                    <p><strong>📘 Course ID:</strong> <span class="badge bg-secondary">@Model.CourseId</span></p>
 
-                    <p class="mb-2">
-                        <strong>💰 Salary:</strong> <span class="text-success fw-semibold">$@Model.Salary</span>
-                    </p>
-
-                    <p class="mb-2">
-                        <strong>🏢 Department ID:</strong> <span class="badge bg-info text-dark">@Model.DepartmentID</span>
-                    </p>
-
-                    <p class="mb-2">
-                        <strong>📚 Course ID:</strong> <span class="badge bg-secondary">@Model.CourseId</span>
-                    </p>
-
-                    <div class="mt-4">
-                        <a href="/Instructor/Edit/@Model.Id" class="btn btn-warning rounded-pill px-4 me-2">✏️ Edit</a>
-                        <a href="/Instructor/Delete/@Model.Id" class="btn btn-danger rounded-pill px-4 me-2">🗑 Delete</a>
-                        <a href="/Instructor/Index" class="btn btn-outline-primary rounded-pill px-4">← Back to List</a>
+                    <div class="mt-4 d-flex gap-2">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning text-white rounded-pill px-4">
+                            ✏️ Edit
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger rounded-pill px-4">
+                            🗑 Delete
+                        </a>
+                        <a asp-action="Index" class="btn btn-outline-primary rounded-pill px-4">
+                            ← Back to List
+                        </a>
                     </div>
                 </div>
             </div>
@@ -54,7 +49,7 @@
     }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 </style>

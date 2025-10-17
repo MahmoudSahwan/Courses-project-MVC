@@ -1,6 +1,8 @@
-using System.Diagnostics;
 using CoursesMVC.Models;
+using CoursesMVC.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace CoursesMVC.Controllers
 {
@@ -13,9 +15,23 @@ namespace CoursesMVC.Controllers
             _logger = logger;
         }
 
+        CourseContext context = new CourseContext();
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new HomeViewModel
+            {
+                Courses = context.Courses
+                    .Include(c => c.Department)
+                    .Take(6)
+                    .ToList(),
+
+                Instructors = context.Instructors
+                    .Include(i => i.Department)
+                    .Take(4)
+                    .ToList()
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

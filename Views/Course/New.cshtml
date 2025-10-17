@@ -1,0 +1,87 @@
+﻿@model CoursesMVC.Models.Course
+
+@{
+    ViewData["Title"] = "Add New Course";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-4 animate__animated animate__fadeInDown">
+        <h1 class="fw-bold text-success mb-2">
+            <i class="bi bi-plus-circle"></i> Add New Course
+        </h1>
+        <p class="text-muted">Fill in the course details below to create a new course.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4 animate__animated animate__fadeInUp">
+                <div class="card-body p-4">
+                    <form asp-action="SaveNew" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold">Course Name</label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter course name" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Degree" class="form-label fw-semibold">Degree</label>
+                            <input asp-for="Degree" type="number" class="form-control" placeholder="Enter degree" />
+                            <span asp-validation-for="Degree" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MinDegree" class="form-label fw-semibold">Minimum Degree</label>
+                            <input asp-for="MinDegree" type="number" class="form-control" placeholder="Enter minimum degree" />
+                            <span asp-validation-for="MinDegree" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="DepartmentId" class="form-label fw-semibold">Department</label>
+                            <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.Departments">
+                                <option value="">-- Select Department --</option>
+                            </select>
+                            <span asp-validation-for="DepartmentId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success rounded-pill px-4 fw-semibold">
+                                <i class="bi bi-check-circle"></i> Save
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 ms-2">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+        border-radius: 1rem;
+    }
+
+    .btn-success:hover {
+        background-color: #198754;
+        box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);
+    }
+
+    .form-control:focus, .form-select:focus {
+        box-shadow: 0 0 5px rgba(25, 135, 84, 0.5);
+        border-color: #198754;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

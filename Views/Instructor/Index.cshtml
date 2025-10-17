@@ -1,29 +1,42 @@
 ﻿@model List<Instructor>
-
 @{
-    ViewData["Title"] = "All Instructors";
+    ViewData["Title"] = "Instructors";
 }
 
-<h1 class="text-center my-4 text-primary">All Instructors</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold text-primary">👨‍🏫 Instructors</h1>
+        <a asp-action="New" class="btn btn-primary rounded-pill px-4">
+            <i class="bi bi-person-plus-fill me-1"></i> Add Instructor
+        </a>
+    </div>
 
-<div class="container">
     <div class="row g-4">
         @foreach (var instructor in Model)
         {
-            <div class="col-md-4">
-                <div class="card shadow-lg border-0 rounded-4 h-100 instructor-card" style="overflow:hidden;">
+            <div class="col-md-4 col-sm-6">
+                <div class="card instructor-card border-0 shadow-lg rounded-4 h-100">
                     <div class="position-relative">
-                        <img src="~/images/@instructor.Img" class="card-img-top" alt="@instructor.Name" style="height: 250px; object-fit: cover;">
-                        <span class="badge bg-primary position-absolute top-0 start-0 m-2 fs-6">@instructor.DepartmentID</span>
-                        <span class="badge bg-success position-absolute top-0 end-0 m-2 fs-6">Course: @instructor.CourseId</span>
+                        <img src="~/images/@instructor.Img" class="card-img-top" alt="@instructor.Name"
+                             style="height:250px;object-fit:cover;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25 d-flex align-items-end p-2 text-white rounded-top-4">
+                            <h5 class="mb-1">@instructor.Name</h5>
+                        </div>
                     </div>
+
                     <div class="card-body text-center">
-                        <h4 class="card-title text-dark fw-bold">@instructor.Name</h4>
-                        <p class="text-muted mb-2"><i class="bi bi-geo-alt-fill text-danger"></i> @instructor.address</p>
-                        <p class="fw-semibold text-success fs-5">$@instructor.Salary</p>
+                        <p class="text-muted mb-2"><i class="bi bi-geo-alt text-danger"></i> @instructor.address</p>
+                        <p class="text-success fw-bold mb-2"><i class="bi bi-cash-coin"></i> $@instructor.Salary</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <span class="badge bg-primary">Dept: @instructor.DepartmentID</span>
+                            <span class="badge bg-success">Course: @instructor.CourseId</span>
+                        </div>
                     </div>
+
                     <div class="card-footer bg-light text-center">
-                        <a href="/Instructor/Details/@instructor.Id" class="btn btn-outline-primary btn-sm rounded-pill px-3">View Profile</a>
+                        <a asp-action="Details" asp-route-id="@instructor.Id" class="btn btn-outline-primary rounded-pill px-4 btn-sm">
+                            View Profile
+                        </a>
                     </div>
                 </div>
             </div>
@@ -41,11 +54,11 @@
     }
 
         .instructor-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
 
     .card-img-top {
-        border-bottom: 3px solid #0d6efd;
+        border-radius: 1rem 1rem 0 0;
     }
 </style>

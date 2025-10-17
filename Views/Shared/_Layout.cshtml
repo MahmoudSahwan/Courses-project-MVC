@@ -3,44 +3,109 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CoursesMVC</title>
+    <title>@ViewData["Title"] - Jo Courses</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CoursesMVC.styles.css" asp-append-version="true" />
+    <style>
+        /* --- Navbar Styling --- */
+        .navbar {
+            background: linear-gradient(135deg, #004e92, #000428);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #ffffff !important;
+            letter-spacing: 1px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #f1f1f1 !important;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: #00bcd4 !important;
+                transform: scale(1.05);
+            }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+            .navbar-toggler:focus {
+                box-shadow: none;
+            }
+
+        /* --- Footer Styling --- */
+        footer {
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            border-top: 2px solid #00bcd4;
+        }
+
+            footer p {
+                margin: 0;
+                font-size: 0.95rem;
+                letter-spacing: 0.5px;
+            }
+
+            footer strong {
+                color: #00bcd4;
+            }
+
+                footer strong:hover {
+                    color: #1de9b6;
+                    transition: color 0.3s;
+                }
+
+        /* --- Main content spacing --- */
+        main {
+            min-height: 75vh;
+        }
+
+        /* Optional: subtle shadow below navbar */
+        .navbar-shadow {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-shadow">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CoursesMVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Jo Courses</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Course" asp-action="Index">Courses</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Department" asp-action="Index">Departments</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Instructor" asp-action="Index">Instructors</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Trainee" asp-action="Index">Trainees</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="CrsResult" asp-action="Index">Results</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+
+    <div class="container-fluid mt-4">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - CoursesMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer class="text-center py-3 mt-5">
+        <p>© @DateTime.Now.Year - <strong>Jo Courses</strong> | Built with ❤️ by <strong>Mahmoud Sahwan</strong></p>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

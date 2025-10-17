@@ -1,0 +1,85 @@
+﻿@model CrsResult
+
+@{
+    ViewData["Title"] = "Result Details";
+}
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="card-header text-white text-center py-4"
+                 style="background: linear-gradient(90deg, #0d6efd, #3a7bd5);">
+                <h2 class="fw-bold mb-0">
+                    <i class="bi bi-mortarboard-fill me-2"></i> Course Result Details
+                </h2>
+            </div>
+
+            <div class="card-body p-5">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <img src="~/images/@Model.Trainee?.Image"
+                             alt="@Model.Trainee?.Name"
+                             width="180" height="180"
+                             class="rounded-circle border border-4 border-primary shadow-sm"
+                             style="object-fit:cover;">
+                    </div>
+
+                    <div class="col-md-8">
+                        <h3 class="fw-bold mb-2 text-dark">@Model.Trainee?.Name</h3>
+                        <p class="text-muted mb-1"><i class="bi bi-geo-alt-fill text-danger"></i> @Model.Trainee?.Address</p>
+                        <p class="fw-semibold text-secondary mb-3">
+                            <i class="bi bi-building me-1"></i>
+                            Department: @Model.Trainee?.Department?.Name
+                        </p>
+
+                        <hr class="my-3">
+
+                        <h5 class="fw-bold text-primary mb-2">
+                            <i class="bi bi-book me-1"></i> Course Info
+                        </h5>
+                        <p><strong>Course:</strong> @Model.Course?.Name</p>
+                        <p><strong>Min Degree:</strong> @Model.Course?.MinDegree</p>
+                        <p><strong>Max Degree:</strong> @Model.Course?.Degree</p>
+
+                        <h5 class="mt-4 fw-bold text-success">
+                            <i class="bi bi-award me-1"></i> Trainee Result
+                        </h5>
+                        <p class="fs-5 mt-2">
+                            <span class="badge bg-success fs-6 px-4 py-2 shadow-sm">
+                                Degree: @Model.Degree
+                            </span>
+                        </p>
+
+                        <div class="mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill px-4 shadow-sm">
+                                <i class="bi bi-arrow-left-circle"></i> Back to Results
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer text-center bg-light py-2">
+                <small class="text-muted">Result ID: @Model.Id</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+    .badge {
+        font-size: 1rem;
+    }
+</style>

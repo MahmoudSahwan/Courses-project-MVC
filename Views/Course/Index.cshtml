@@ -4,59 +4,131 @@
     ViewData["Title"] = "All Courses";
 }
 
-<h1 class="text-center my-4 text-primary fw-bold">All Courses</h1>
+<div class="courses-page container py-5">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary mb-3 animate__animated animate__fadeInDown">
+            <i class="bi bi-book-half me-2"></i> All <span class="text-dark">Courses</span>
+        </h1>
+        <p class="text-muted lead">Explore all available courses and start learning from the best instructors.</p>
+    </div>
 
-<div class="container">
+    <!-- Search & Filter -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8">
+            <div class="input-group shadow-sm">
+                <input type="text" class="form-control rounded-start-pill" placeholder="Search courses..." />
+                <button class="btn btn-primary rounded-end-pill px-4">
+                    <i class="bi bi-search"></i> Search
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Courses Grid -->
     <div class="row g-4">
         @foreach (var Crs in Model)
         {
-            <div class="col-md-4 col-sm-6">
-                <div class="card shadow-lg border-0 rounded-4 h-100 course-card" style="overflow:hidden;">
-                    <div class="card-header bg-primary text-white text-center fw-semibold fs-5">
-                        @Crs.Name
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden course-card h-100 animate__animated animate__fadeInUp">
+                    <!-- Header Image Placeholder -->
+                    <div class="course-img position-relative" style="height: 180px; background: linear-gradient(135deg, #0d6efd, #3a7bd5);">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center text-white fw-bold fs-4 bg-opacity-50">
+                            @Crs.Name
+                        </div>
                     </div>
 
-                    <div class="card-body text-center">
-                        <p class="text-secondary mb-2">
-                            <i class="bi bi-mortarboard-fill text-primary"></i>
-                            <strong>Department:</strong> @Crs.DepartmentId
+                    <div class="card-body text-center py-4">
+                        <h5 class="fw-bold text-dark">@Crs.Name</h5>
+                        <p class="text-muted small mb-2">
+                            <i class="bi bi-diagram-3 text-primary"></i>
+                            Department:
+                            <span class="fw-semibold text-secondary">@Crs.Department?.Name</span>
                         </p>
 
-                        <p class="fw-semibold text-success fs-6 mb-1">
-                            <i class="bi bi-star-fill text-warning"></i> Degree: @Crs.Degree
-                        </p>
-
-                        <p class="fw-semibold text-danger fs-6 mb-1">
-                            <i class="bi bi-graph-down-arrow"></i> Min Degree: @Crs.MinDegree
-                        </p>
+                        <div class="d-flex justify-content-center gap-3 my-3">
+                            <span class="badge bg-success p-2 px-3 rounded-pill">
+                                <i class="bi bi-star-fill"></i> Degree: @Crs.Degree
+                            </span>
+                            <span class="badge bg-danger p-2 px-3 rounded-pill">
+                                <i class="bi bi-graph-down-arrow"></i> Min: @Crs.MinDegree
+                            </span>
+                        </div>
                     </div>
 
-                    <div class="card-footer bg-light text-center">
-                        <a asp-action="Details" asp-route-id="@Crs.Id" class="btn btn-outline-primary btn-sm rounded-pill px-4">
-                            View Details
+                    <div class="card-footer bg-white text-center py-3 border-0">
+                        <a asp-action="Details" asp-route-id="@Crs.Id"
+                           class="btn btn-outline-primary rounded-pill px-4 fw-semibold shadow-sm">
+                            <i class="bi bi-eye"></i> View Details
                         </a>
                     </div>
                 </div>
             </div>
         }
     </div>
+
+    <!-- Add New Button -->
+    <div class="text-center mt-5">
+        <a href="/Course/New" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm">
+            <i class="bi bi-plus-circle"></i> Add New Course
+        </a>
+    </div>
 </div>
+
+<!-- Bootstrap Icons + Animate.css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 <style>
     body {
         background-color: #f8f9fa;
+        font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .courses-page h1 span {
+        color: #0d6efd;
     }
 
     .course-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        background-color: #fff;
     }
 
-    .course-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .course-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+    .course-img {
+        background-size: cover;
+        background-position: center;
+        position: relative;
     }
 
-    .card-header {
-        font-size: 1.2rem;
+    .badge {
+        font-size: 0.9rem;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #0d6efd;
+        color: white;
+        box-shadow: 0 4px 10px rgba(13, 110, 253, 0.4);
+    }
+
+    .input-group input {
+        border: 2px solid #0d6efd;
+    }
+
+    .input-group button {
+        border: 2px solid #0d6efd;
+    }
+
+    .input-group input:focus {
+        box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+    }
+
+    .add-btn {
+        font-weight: 600;
+        transition: all 0.3s ease;
     }
 </style>

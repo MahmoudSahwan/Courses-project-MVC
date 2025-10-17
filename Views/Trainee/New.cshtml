@@ -1,0 +1,50 @@
+﻿@model Trainee
+@{
+    ViewData["Title"] = "Add Trainee";
+}
+
+<div class="container my-5">
+    <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-header bg-success text-white text-center fw-bold fs-5">
+            <i class="bi bi-person-plus-fill me-1"></i> Add New Trainee
+        </div>
+
+        <div class="card-body p-4">
+            <form action="/Trainee/SaveNew" method="post">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Name</label>
+                        <input type="text" name="Name" value="@Model?.Name" class="form-control" placeholder="Enter trainee name">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Image</label>
+                        <input type="text" name="Image" value="@Model?.Image" class="form-control" placeholder="image.jpg">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Grade</label>
+                        <input type="text" name="Grade" value="@Model?.Grade" class="form-control" placeholder="Enter grade">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Address</label>
+                        <input type="text" name="Address" value="@Model?.Address" class="form-control" placeholder="Enter address">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Department</label>
+                        <select class="form-select" name="DepartmentID" asp-items="ViewBag.Departments"></select>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="/Trainee/Index" class="btn btn-outline-secondary rounded-pill px-4">← Back</a>
+                    <button type="submit" class="btn btn-success rounded-pill px-4">
+                        <i class="bi bi-check-circle-fill me-1"></i> Create
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

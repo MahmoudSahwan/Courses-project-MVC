@@ -1,0 +1,70 @@
+﻿@model Trainee
+
+@{
+    ViewData["Title"] = "Trainee Details";
+}
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                    <div class="bg-primary text-white text-center position-relative py-5">
+                        <img src="~/images/@Model.Image"
+                             alt="@Model.Name"
+                             class="rounded-circle border border-4 border-white shadow trainee-img"
+                             width="150" height="150"
+                             style="object-fit: cover; position: relative; top: 40px;">
+                    </div>
+
+                    <div class="card-body text-center mt-5">
+                        <h2 class="fw-bold text-dark mb-2">@Model.Name</h2>
+                        <p class="text-muted mb-3">
+                            <i class="bi bi-geo-alt-fill text-danger"></i> @Model.Address
+                        </p>
+                        <p class="text-success fw-semibold mb-2">Grade: @Model.Grade</p>
+                        <p class="text-secondary mb-3">
+                            Department: <span class="fw-bold">@Model.Department?.Name</span>
+                        </p>
+
+                        <hr class="my-4">
+
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="/Trainee/Index" class="btn btn-outline-secondary rounded-pill px-4">
+                                <i class="bi bi-arrow-left-circle"></i> Back
+                            </a>
+                            <a href="/Trainee/Edit/@Model.Id" class="btn btn-warning text-white rounded-pill px-4">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a href="/Department/Details/@Model.DepartmentId" class="btn btn-primary rounded-pill px-4">
+                                <i class="bi bi-building"></i> View Department
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-center bg-light">
+                        <small class="text-muted">Trainee ID: @Model.Id</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .trainee-img {
+        object-fit: cover;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        transition: 0.3s ease;
+    }
+</style>

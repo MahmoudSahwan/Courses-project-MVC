@@ -1,0 +1,64 @@
+﻿@model List<Trainee>
+
+@{
+    ViewData["Title"] = "All Trainees";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold text-primary"><i class="bi bi-people-fill me-2"></i> Our Trainees</h1>
+        <a class="btn btn-success rounded-pill px-4" href="/Trainee/New">
+            <i class="bi bi-person-plus-fill me-1"></i> Add New
+        </a>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        @foreach (var trainee in Model)
+        {
+            <div class="col-md-4 col-sm-6">
+                <div class="card trainee-card border-0 shadow-lg rounded-4 h-100">
+                    <div class="text-center p-4">
+                        <img src="~/images/@trainee.Image"
+                             alt="@trainee.Name"
+                             class="rounded-circle mb-3 trainee-img"
+                             width="120" height="120">
+                        <h5 class="fw-bold text-dark">@trainee.Name</h5>
+                        <p class="text-muted mb-1">
+                            <i class="bi bi-geo-alt-fill text-danger"></i> @trainee.Address
+                        </p>
+                        <p class="fw-semibold text-success mb-1">Grade: @trainee.Grade</p>
+                        <p class="small text-secondary mb-3">
+                            Department: <span class="fw-semibold">@trainee.Department?.Name</span>
+                        </p>
+                        <a href="/Trainee/Details/@trainee.Id"
+                           class="btn btn-outline-primary rounded-pill px-4">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .trainee-card {
+        transition: all 0.3s ease-in-out;
+    }
+
+        .trainee-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+    .trainee-img {
+        border: 3px solid #0d6efd;
+        padding: 3px;
+        object-fit: cover;
+    }
+</style>
